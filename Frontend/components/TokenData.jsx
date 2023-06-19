@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import Moralis from "moralis";
 import { EvmChain } from "@moralisweb3/common-evm-utils";
 import { useAccount } from "wagmi";
-import axios from "axios";
+// import axios from "axios";
+import Allowances from './Allowance'
+import Web3 from "web3";
+const web3 = new Web3(Web3.givenProvider);
+
 
 Moralis.start({
   apiKey:
@@ -199,6 +203,17 @@ const TokenData = () => {
                       </p>
                    
                     </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <button
+                            className="px-4 py-2 font-medium text-gray-700 bg-gray-200 border border-gray-300 rounded-md hover:bg-gray-300 mr-2 mt-2 hover:text-gray-800 focus:outline-none focus:bg-gray-300 focus:border-gray-400"
+                            onClick={handleViewMode}
+                          >
+                            Revoke
+                          </button>
+                    </td>
                   </tr>
                 ))}
                 {NFTs.map((nft, index) => (
@@ -248,6 +263,7 @@ const TokenData = () => {
                 ))}
               </tbody>
             </table>
+            <Allowances web3={web3}/>
           </div>
         </div>
       </div>
